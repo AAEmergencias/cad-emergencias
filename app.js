@@ -5,10 +5,16 @@ window.login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+  console.log("Intentando login..."); // 👈 para debug
+
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    alert("Login OK");
+    console.log("Login OK");
+    
+    window.location.href = "operador.html"; // 👈 redirección
+
   } catch (e) {
-   window.location.href = "operador.html";
+    console.error(e);
+    alert(e.message);
   }
 };
