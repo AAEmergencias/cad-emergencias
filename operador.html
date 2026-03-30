@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>CAD Operador</title>
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
 
@@ -9,9 +11,13 @@
 
 <button onclick="crearEmergencia()">🚨 Nueva Emergencia</button>
 
+<div id="map" style="height: 500px;"></div>
+
 <ul id="lista"></ul>
 
 <script type="module" src="operador.js"></script>
+<script
+  src="https:///unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </body>
 </html>
