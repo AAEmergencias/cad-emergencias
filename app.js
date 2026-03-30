@@ -11,7 +11,7 @@ window.login = async () => {
     await signInWithEmailAndPassword(auth, email, password);
     console.log("Login OK");
     
-    window.location.href = "operador.html"; // 👈 redirección
+    window.location.href = "./operador.html"; // 👈 redirección
 
   } catch (e) {
     console.error(e);
