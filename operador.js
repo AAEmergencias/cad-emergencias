@@ -26,3 +26,33 @@ onSnapshot(collection(db, "incidentes"), (snapshot) => {
     lista.appendChild(li);
   });
 });
+
+// 🗺️ Crear mapa
+const map = L.map('map').setView([-33.4, -70.6], 10);
+
+// 🌍 CAPA CLARA
+const light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap'
+});
+
+// 🌙 CAPA OSCURA
+const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© CartoDB'
+});
+
+// 🛰️ CAPA SATÉLITE
+const satellite = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+  subdomains:['mt0','mt1','mt2','mt3']
+});
+
+// 👉 capa por defecto
+light.addTo(map);
+
+// 🎛️ CONTROL DE CAPAS
+const baseMaps = {
+  "Claro": light,
+  "Oscuro": dark,
+  "Satélite": satellite
+};
+
+L.control.layers(baseMaps).addTo(map);
