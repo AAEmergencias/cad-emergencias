@@ -9,6 +9,6 @@ window.login = async () => {
     await signInWithEmailAndPassword(auth, email, password);
     alert("Login OK");
   } catch (e) {
-    alert("Error login");
+   window.location.href = "operador.html";
   }
 };
