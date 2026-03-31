@@ -62,7 +62,7 @@ import {
       "Encerramiento en ascensor",
       "Rescate vertical",
       "Rescate espacio confinados",
-      "Atropello"
+      "Atropello",
       "Caida de particular",
       "Otros no categorizados"
     ]
