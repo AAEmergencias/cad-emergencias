@@ -32,8 +32,7 @@ L.control.layers({
 // 🔴 JURISDICCIÓN (TU GEOJSON REAL)
 //////////////////////////////////////////////////////
 
-const zonaGeoJSON = 
-   {
+const zonaGeoJSON = {
   "type": "FeatureCollection",
   "features": [
     {
