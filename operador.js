@@ -8,6 +8,167 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
+[
+  {
+    "tipo": "INCENDIO",
+    "subtipos": [
+      "Amago de incendio equipos mineros",
+      "Amago de incendio en vehículos pesados",
+      "Amago de incendio en vehículos livianos",
+      "Amago de incendio instalaciones industriales",
+      "Incendio en equipos mineros",
+      "Incendio en vehículos pesado",
+      "Incendio en vehículos livianos",
+      "Incendio instalaciones",
+      "Incendio fuera de las instalaciones",
+      "Incendio Forestal",
+      "Pastizales y/o Basura"
+    ]
+  },
+  {
+    "tipo": "VEHICULAR",
+    "subtipos": [
+      "Choque equipos mineros",
+      "Choque vehículos pesados",
+      "Choque vehículos livianos",
+      "Choque vehículos pesados fuera de las instalaciones",
+      "Choque vehículos  livianos fuera de las instalaciones",
+      "Desbarrancamiento equipos mineros",
+      "Desbarrancamiento vehículos  pesados",
+      "Desbarrancamiento vehículos  livianos",
+      "Desbarrancamiento vehículos  pesados fuera de las instalaciones",
+      "Desbarrancamiento vehículos livianos fuera de las instalaciones",
+      "Colisión equipo minero",
+      "Colisión vehículos pesados",
+      "Colisión vehículos  livianos",
+      "Colisión vehículos  pesados fuera de las instalaciones",
+      "Colision vehículos livianos fuera de las instalaciones",
+      "Volcamiento equipo minero",
+      "Volcamiento vehículos pesados",
+      "Volcamiento vehículos livianos",
+      "Volcamiento vehículos pesados fuera de las instalaciones",
+      "Volcamiento vehículos livianos fuera de las instalaciones",
+      "Deslizamiento de equipos mineros"
+    ]
+  },
+  {
+    "tipo": "RESCATE",
+    "subtipos": [
+      "Caída mismo nivel",
+      "Caída diferente nivel",
+      "Derrumbe",
+      "Atrapamiento",
+      "Perdida de conciencia",
+      "Encerramiento en ascensor",
+      "Rescate vertical",
+      "Rescate espacio confinados",
+      "Atropello"
+      "Caida de particular",
+      "Otros no categorizados"
+    ]
+  },
+  {
+    "tipo": "MEDICO",
+    "subtipos": [
+      "Problemas de salud",
+      "Fractura",
+      "Esguince",
+      "Desmayo",
+      "Crisis de Panico o Ansiedad",
+      "Golpeador por",
+      "PCR",
+      "Corte en brazo, mano, pierna, etc",
+      "Perdida de memoria",
+      "Otros no categorizados"
+    ]
+  },
+  {
+    "tipo": "HAZMAT",
+    "subtipos": [
+      "Derrame de sustancias peligrosas",
+      "Fuga de sustancias peligrosas",
+      "Incidente con sustancias peligrosas varias"
+    ]
+  },
+  {
+    "tipo": "SIMULACROS",
+    "subtipos": [
+      "Simulacros Simulacros Documental / Proceso / Divisional",
+      "Incendio",
+      "Vehicular",
+      "Rescate",
+      "Hazmat",
+      "Sísmico",
+      "Meteorológico",
+      "Geológico",
+      "Ambiental",
+      "Médico"
+    ]
+  },
+  {
+    "tipo": "SÍSMICO",
+    "subtipos": [
+      "Sismo leve en Faena",
+      "Sismo moderado con evacuación preventiva",
+      "Terremoto grave que causa daño estructural"
+    ]
+    },
+    {
+    "tipo": "METEOROLÓGICO",
+    "subtipos": [
+      "Tormenta eléctrica en Zona Alta",
+      "Nevadas intensas que bloquean accesos",
+      "Lluvias torrencial que afecta estabilidad de caminos / tranques",
+      "Ola de Calor que acelera derretimiento de nieve",
+      "Viento blanco o venstiscas en zona alta ",
+      "Aluvión por deshielo o lluvias intensas",
+      "Crecida de rios por lluvias intensas",
+      "Inundación de instalaciones "
+    ]
+    },
+    {
+    "tipo": "SÍSMICO",
+    "subtipos": [
+      "Sismo leve en Faena",
+      "Sismo moderado con evacuación preventiva",
+      "Terremoto grave que causa daño estructural"
+    ]
+    },
+  {
+    "tipo": "GEOLÓGICO",
+    "subtipos": [
+      "Deslizamiento de terreno",
+      "Remocion en masa",
+      "Falla Geotécnica en botaderos o depósitos de relaves",
+      "Caida de rocas en zonas de transito",
+      "Inestabilidad de taludes"
+    ]
+  },
+   {
+    "tipo": "AMBIENTAL",
+    "subtipos": [
+      "Aumento de material particulado por vientos",
+      "Contaminación a cursos de agua",
+      "Afectación a flora / fauna"
+    ]
+  },
+   {
+    "tipo": "OTROS",
+    "subtipos": [
+      "Limpieza de rodados / arboleda en rutas de acceso OLB",
+      "Activación de alarma SPCI",
+      "Contacto electrico",
+      "Desperfecto mecancio, rutas G-21, G-245",
+      "Desperfecto mecánico, ruta STP- OLB",
+      "Rescate animal",
+      "Olor no determinado",
+      "Daño a infraestructura crítica",
+      "Caída de árbol",
+      "Interrupción de suministro eléctrico",
+      "Otros no categorizados"
+    ]
+  },
+]
 //////////////////////////////////////////////////////
 // 🗺️ MAPA
 //////////////////////////////////////////////////////
