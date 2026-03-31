@@ -1104,3 +1104,48 @@ window.accion = async (vehiculoId, codigo) => {
     ubicacion: nuevaUbicacion
   });
 };
+
+function mostrarFormularioEmergencia(lat, lng) {
+
+  const modal = document.createElement("div");
+  modal.style.position = "absolute";
+  modal.style.top = "80px";
+  modal.style.left = "80px";
+  modal.style.background = "white";
+  modal.style.padding = "15px";
+  modal.style.zIndex = "9999";
+  modal.style.border = "2px solid black";
+
+  let opcionesTipo = Object.keys(TIPOS_EMERGENCIA)
+    .map(t => `<option value="${t}">${t}</option>`)
+    .join("");
+
+  modal.innerHTML = `
+    <h3>🚨 Nueva Emergencia</h3>
+
+    <label>Clasificación:</label><br>
+    <select id="tipo">${opcionesTipo}</select><br><br>
+
+    <label>Subclasificación:</label><br>
+    <select id="subtipo"></select><br><br>
+
+    <button id="btnGuardar">Guardar</button>
+    <button id="btnCancelar">Cancelar</button>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Cargar subtipos automáticamente
+  actualizarSubtipos();
+
+  document.getElementById("tipo").onchange = actualizarSubtipos;
+
+  document.getElementById("btnGuardar").onclick = () => {
+    guardarEmergencia(lat, lng);
+    modal.remove();
+  };
+
+  document.getElementById("btnCancelar").onclick = () => {
+    modal.remove();
+  };
+}
