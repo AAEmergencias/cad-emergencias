@@ -5,7 +5,7 @@ import {
   doc,
   updateDoc,
   GeoPoint,
-  getDoc // 👈 AGREGAR AQUÍ
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 //////////////////////////////////////////////////////
@@ -28,42 +28,85 @@ L.control.layers({
   "Satélite": satellite
 }).addTo(map);
 
-// 🔴 ZONA GEOJSON
-const zonaGeoJSON = {
+//////////////////////////////////////////////////////
+// 🗺️ ZONAS (MULTIPLES)
+//////////////////////////////////////////////////////
+
+const zonasGeoJSON = {
   "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": { "nombre": "Zona Mina" },
       "geometry": {
-        "coordinates": [
-          [
-            [
-              -70.49436744448403,
-              -33.3662667946892
-            ],
-            ...
-          ]
-        ],
-        "type": "Polygon"
+        "type": "Polygon",
+        "coordinates": [[[ -70.49,-33.36 ],[ -70.48,-33.35 ],[ -70.47,-33.36 ],[ -70.49,-33.36 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nombre": "Zona Tortolas" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -70.70,-33.14 ],[ -70.69,-33.13 ],[ -70.68,-33.14 ],[ -70.70,-33.14 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nombre": "Zona STP" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -70.56,-33.19 ],[ -70.55,-33.18 ],[ -70.54,-33.19 ],[ -70.56,-33.19 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nombre": "Zona Ermita" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -70.39,-33.36 ],[ -70.38,-33.35 ],[ -70.37,-33.36 ],[ -70.39,-33.36 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nombre": "Zona Bronces" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -70.28,-33.14 ],[ -70.27,-33.13 ],[ -70.26,-33.14 ],[ -70.28,-33.14 ]]]
       }
     }
   ]
 };
 
-L.geoJSON(zonaGeoJSON, {
-  style: {
-    color: "#ff0000",
-    fillColor: "ff0000",
-    fillOpacity: 0.05,
-    weight: 2
+L.geoJSON(zonasGeoJSON, {
+  style: function(feature) {
+
+    let color = "red";
+
+    switch (feature.properties.nombre) {
+      case "Zona Mina": color = "orange"; break;
+      case "Zona Tortolas": color = "blue"; break;
+      case "Zona STP": color = "purple"; break;
+      case "Zona Ermita": color = "green"; break;
+      case "Zona Bronces": color = "red"; break;
+    }
+
+    return {
+      color: color,
+      fillColor: color,
+      fillOpacity: 0.05,
+      weight: 2
+    };
+  },
+
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup(feature.properties.nombre);
   }
-})
-  .bindPopup("Jurisdicción Anglo")
-  .addTo(map);
+
+}).addTo(map);
 
 //////////////////////////////////////////////////////
-// 🎨 COLORES
+// 🎨 COLORES VEHÍCULOS
 //////////////////////////////////////////////////////
 
 function getColor(estado) {
@@ -108,7 +151,7 @@ onSnapshot(collection(db, "vehiculos"), (snapshot) => {
 });
 
 //////////////////////////////////////////////////////
-// 🪟 PANEL VEHÍCULO
+// 🪟 PANEL
 //////////////////////////////////////////////////////
 
 let panel = document.createElement("div");
@@ -151,14 +194,12 @@ window.cerrarPanel = () => {
 };
 
 //////////////////////////////////////////////////////
-// ⚙️ LÓGICA DE CLAVES
+// ⚙️ LÓGICA CAD
 //////////////////////////////////////////////////////
 
 window.accion = async (vehiculoId, codigo) => {
 
   const ref = doc(db, "vehiculos", vehiculoId);
-
-  // 🔍 Obtener datos actuales del vehículo
   const snapshot = await getDoc(ref);
   const vehiculo = snapshot.data();
 
@@ -169,42 +210,31 @@ window.accion = async (vehiculoId, codigo) => {
 
   switch (codigo) {
 
-    case "6-3": // En el lugar
+    case "6-3":
       estado = "En Servicio";
-
-      // 🔒 queda bloqueado si tiene incidente
-      if (tieneIncidente) {
-        estado = "En Servicio";
-      }
-
-      // (temporal) mover a punto
       nuevaUbicacion = new GeoPoint(-33.4, -70.6);
       break;
 
-    case "6-7": // Controlado
+    case "6-7":
       estado = "En Servicio";
       break;
 
-    case "6-8": // Disponible
+    case "6-8":
       estado = "Disponible";
-
-      // 🔓 liberar incidente
       if (tieneIncidente) {
-        await updateDoc(ref, {
-          incidente_asignado: null
-        });
+        await updateDoc(ref, { incidente_asignado: null });
       }
       break;
 
-    case "6-9": // Se retira
+    case "6-9":
       estado = "En Llamado";
       break;
 
-    case "6-10": // En base
+    case "6-10":
       estado = "En base";
       break;
 
-    case "6-11": // En panne
+    case "6-11":
       estado = "Fuera de servicio";
       break;
 
