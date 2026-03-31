@@ -53,12 +53,14 @@ const zonaGeoJSON = {
 
 L.geoJSON(zonaGeoJSON, {
   style: {
-    color: "red",
-    fillColor: "red",
-    fillOpacity: 0.1,
+    color: "#ff0000",
+    fillColor: "ff0000",
+    fillOpacity: 0.05,
     weight: 2
   }
-}).addTo(map);
+})
+  .bindPopup("Jurisdicción Anglo")
+  .addTo(map);
 
 //////////////////////////////////////////////////////
 // 🎨 COLORES
