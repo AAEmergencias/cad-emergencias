@@ -810,16 +810,21 @@ onSnapshot(collection(db, "vehiculos"), (snapshot) => {
     const lng = v.ubicacion.longitude;
 
     if (vehiculosMarkers[id]) {
+      
       vehiculosMarkers[id].setLatLng([lat, lng]);
+      
       vehiculosMarkers[id].setStyle({ 
         color: getColor(v.estado),
-        fillColor: getColor(v.estado)
+        fillColor: getColor(v.estado),
+        fillOpacity: 0.8
       });
 
     } else {
       const marker = L.circleMarker([lat, lng], {
         radius: 8,
-        color: getColor(v.estado)
+        color: getColor(v.estado),
+        fillColor: getColor(v.estado),
+        fillOpacity: 0.8
       }).addTo(map);
 
       marker.on("click", () => abrirPanel(v, id));
