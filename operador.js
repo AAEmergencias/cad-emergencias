@@ -33,7 +33,6 @@ L.control.layers({
 //////////////////////////////////////////////////////
 
 const zonaGeoJSON = {
-  {
   "type": "FeatureCollection",
   "features": [
     {
@@ -2060,7 +2059,7 @@ const zonaGeoJSON = {
       }
     }
   ]
-}
+};
 
 L.geoJSON(zonaGeoJSON, {
   style: {
