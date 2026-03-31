@@ -812,7 +812,10 @@ onSnapshot(collection(db, "vehiculos"), (snapshot) => {
 
     if (vehiculosMarkers[id]) {
       vehiculosMarkers[id].setLatLng([lat, lng]);
-      vehiculosMarkers[id].setStyle({ color: getColor(v.estado) });
+      vehiculosMarkers[id].setStyle({ 
+        color: getColor(v.estado) 
+        fillColor: getColor(v.estado)
+      });
 
     } else {
       const marker = L.circleMarker([lat, lng], {
